@@ -1,0 +1,20 @@
+--- src/corelib/thread/qthread_unix.cpp
++++ src/corelib/thread/qthread_unix.cpp
+@@ -121,6 +121,8 @@ enum { ThreadPriorityResetFlag = 0x80000000 };
+ #define HAVE_TLS
+ #endif
+ 
++#undef HAVE_TLS
++
+ #ifdef HAVE_TLS
+ static __thread QThreadData *currentThreadData = 0;
+ #endif
+@@ -285,7 +287,7 @@ static void setCurrentThreadName(pthread_t threadId, const char *name)
+ {
+ #  if defined(Q_OS_LINUX) && !defined(QT_LINUXBASE)
+     Q_UNUSED(threadId);
+-    prctl(PR_SET_NAME, (unsigned long)name, 0, 0, 0);
++//    prctl(PR_SET_NAME, (unsigned long)name, 0, 0, 0);
+ #  elif (defined(Q_OS_MAC) && MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6)
+     Q_UNUSED(threadId);
+     if (QSysInfo::MacintoshVersion >= QSysInfo::MV_10_6)

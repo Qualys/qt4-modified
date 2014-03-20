@@ -1,0 +1,15 @@
+--- src/network/access/qnetworkcookie.cpp	2013-10-28 14:24:38.000000000 -0700
++++ src/network/access/qnetworkcookie.cpp	2014-03-20 15:46:35.000000000 -0700
+@@ -982,10 +982,8 @@
+                     QByteArray dateString = cookieString.mid(position, end - position).trimmed();
+                     position = end;
+                     QDateTime dt = parseDateString(dateString.toLower());
+-                    if (!dt.isValid()) {
+-                        return result;
+-                    }
+-                    cookie.setExpirationDate(dt);
++                    if (dt.isValid())
++                      cookie.setExpirationDate(dt);
+                 } else if (field.first == "domain") {
+                     QByteArray rawDomain = field.second;
+                     QString maybeLeadingDot;

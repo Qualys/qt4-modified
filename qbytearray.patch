@@ -1,0 +1,15 @@
+--- src/corelib/tools/qbytearray.cpp	2013-10-28 14:24:36.000000000 -0700
++++ src/corelib/tools/qbytearray.cpp	2014-03-20 15:43:30.000000000 -0700
+@@ -4052,7 +4052,11 @@
+     char c;
+     while (i < len) {
+         c = inputPtr[i];
+-        if (c == percent && i + 2 < len) {
++        int x = inputPtr[i + 1];
++        int y = inputPtr[i + 2];
++        if (c == percent && i + 2 < len && 
++         ((x >= '0' && x <= '9') || (x >= 'a' && x <= 'f') || (x >= 'A' && x <= 'F')) &&
++         ((y >= '0' && y <= '9') || (y >= 'a' && y <= 'f') || (y >= 'A' && y <= 'F'))) {
+             a = inputPtr[++i];
+             b = inputPtr[++i];
+ 

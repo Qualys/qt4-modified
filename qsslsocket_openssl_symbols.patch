@@ -1,0 +1,11 @@
+--- src/network/ssl/qsslsocket_openssl_symbols.cpp
++++ src/network/ssl/qsslsocket_openssl_symbols.cpp
+@@ -57,6 +57,8 @@
+ #include <link.h>
+ #endif
+ 
++#include <QSet>
++
+ QT_BEGIN_NAMESPACE
+ 
+ /*
